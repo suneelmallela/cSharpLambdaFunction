@@ -1,0 +1,25 @@
+image: microsoft/dotnet:latest
+
+stages:
+  - test
+  - build
+
+
+variables:
+  AWS_DEFAULT_REGION: "us-east-1"
+  
+Test:
+  stage: test
+  script: dotnet --version
+
+Build:
+  stage: build
+  script:
+    - dotnet restore
+    - dotnet publish -c release
+  artifacts:
+    paths:
+    - bin/*
+
+
+  
